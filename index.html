@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Lesson Attendance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #2e86de;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #1b4f72;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 6px;
+            text-align: center;
+        }
+
+        th {
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Lesson Attendance</h2>
+
+    <input type="text" id="name" placeholder="Student Name">
+    <input type="text" id="reg" placeholder="Registration Number">
+    <input type="text" id="lesson" placeholder="Lesson / Subject">
+
+    <button onclick="markAttendance()">Mark Attendance</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Reg No</th>
+                <th>Lesson</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody id="records">
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function markAttendance() {
+        let name = document.getElementById("name").value;
+        let reg = document.getElementById("reg").value;
+        let lesson = document.getElementById("lesson").value;
+
+        if (name === "" || reg === "" || lesson === "") {
+            alert("Please fill all fields");
+            return;
+        }
+
+        let time = new Date().toLocaleString();
+
+        let table = document.getElementById("records");
+        let row = table.insertRow();
+
+        row.insertCell(0).innerHTML = name;
+        row.insertCell(1).innerHTML = reg;
+        row.insertCell(2).innerHTML = lesson;
+        row.insertCell(3).innerHTML = time;
+
+        document.getElementById("name").value = "";
+        document.getElementById("reg").value = "";
+        document.getElementById("lesson").value = "";
+    }
+</script>
+
+</body>
+</html>
